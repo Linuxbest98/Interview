@@ -1,0 +1,51 @@
+@mixin bg-img($path,$size) {
+  background-image: url(#{$path}@2x.png);
+  background-size: $size;
+  background-repeat: no-repeat;
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    background-image: url(#{$path}@3x.png);
+    background-size: $size;
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin border-bottom($color) {
+  position: relative;
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    content: ' ';
+    border-top: 1px solid $color;
+  }
+}
+
+@mixin border-none {
+  &:after {
+    display: none;
+  }
+}
+
+@mixin support-icon($type,$size) {
+  &.decrease {
+    @include bg-img("/img/decrease_#{$type}", $size)
+  }
+
+  &.discount {
+    @include bg-img("/img/discount_#{$type}", $size)
+  }
+
+  &.special {
+    @include bg-img("/img/special_#{$type}", $size)
+  }
+
+  &.invoice {
+    @include bg-img("/img/invoice_#{$type}", $size)
+  }
+
+  &.guarantee {
+    @include bg-img("/img/guarantee_#{$type}", $size)
+  }
+}
